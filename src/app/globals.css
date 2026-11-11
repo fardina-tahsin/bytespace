@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-brand: #3a48a7;
+  --color-brand-dark: #212c84;
+  --color-accent: #d6f65a;
+  --color-ink: #121d3f;
+  --color-surface: #f6f7fb;
+  --color-line: #e8eaf3;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(10, 16, 36, 0.04), 0 16px 40px -24px rgba(10, 16, 36, 0.18);
+  --shadow-soft: 0 30px 80px -32px rgba(3, 5, 12, 0.28);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-blob: blob 18s ease-in-out infinite;
+  --animate-blob-slow: blob 26s ease-in-out infinite;
+  --animate-blob-reverse: blob-reverse 22s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-menu: menu 0.2s ease-out both;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes menu {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+  66% {
+    transform: translate(-30px, 20px) scale(0.94);
+  }
+}
+
+@keyframes blob-reverse {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(0.94);
+  }
+  66% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(rgba(10, 16, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 16, 36, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
